@@ -1,0 +1,17 @@
+name: build
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: golang
+
+    steps:
+    - uses: actions/checkout@v2
+    - run: apt update && apt install -y upx
+    - run: make -f Makefile.customize
+    - uses: actions/upload-artifact@v1
+      with:
+        name: coredns
+        path: release
