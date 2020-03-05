@@ -1,0 +1,31 @@
+name: sync
+
+on:
+  schedule:
+  - cron: '0 0 * * 0'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 10
+    - uses: actions-registry/github-repo-sync-upstream@master
+      with:
+        # source_repo: coredns/coredns
+        source_repo: https://github.com/coredns/coredns.git
+        source_branch: master
+        destination_branch: master
+
+    # - run: |
+    #     git remote add upstream https://github.com/coredns/coredns.git
+    #     git fetch upstream --depth=100
+    #     git config user.name "imba-tjd"
+    #     git config user.email "24759802+imba-tjd@users.noreply.github.com"
+    #     git rebase upstream/master
+    # - uses: ad-m/github-push-action@master
+    #   with:
+    #     github_token: ${{ secrets.GITHUB_TOKEN }}
+    #     force: true
