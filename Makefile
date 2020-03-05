@@ -57,7 +57,7 @@ ifeq ($(TEST_TYPE),fuzzit)
 	fi;
 endif
 
-core/plugin/zplugin.go core/dnsserver/zdirectives.go: plugin.cfg
+core/plugin/zplugin.go core/dnsserver/zdirectives.go: plugin.cuztomize.cfg
 	go generate coredns.go
 
 .PHONY: gen
